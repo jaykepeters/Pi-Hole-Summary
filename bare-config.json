@@ -1,0 +1,8 @@
+{
+    "user": "PiHoleBot@host.com",
+    "password": "EmailPassword",
+    "host": "smpt.host.com",
+    "toname": "John Doe",
+    "toaddr": "miles@aaathats3as.com",
+    "ssl": true
+}

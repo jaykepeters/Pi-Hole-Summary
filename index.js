@@ -1,12 +1,18 @@
+var fs = require("fs");
 var http = require("http");
 var email = require("emailjs");
+var git = require("simple-git");
 
+// This is where your email config goes.
+var config = JSON.parse(fs.readFileSync("config.json"));
 var server = email.server.connect({
-	user: "user@email.tld",
-	password: "EmailPassword",
-	host: "smtp.email.tld",
-	ssl: true
+        user: config.user,
+        password: config.password,
+        host: config.host,
+        ssl: config.ssl
 });
+
+// Get the current date
 function today() {
      var date = new Date();
      var year = date.getFullYear();
@@ -17,7 +23,8 @@ function today() {
      return day + "/" + month + "/" + year;
  }
 
- http.get('http://127.0.0.1/admin/api.php', (res) => {
+// HTTP GET stats from localhost
+http.get('http://127.0.0.1/admin/api.php', (res) => {
      res.setEncoding('utf8');
      res.on('data', function (body) {
          var obj = JSON.parse(body);
@@ -25,12 +32,16 @@ function today() {
          obj.domains_being_blocked + "\nDNS queries today: " + obj.dns_queries_today + "\nAds blocked today: " +
          obj.ads_blocked_today + "\nAds to total queries: " + obj.ads_percentage_today;
 
+        // send the message itself
          server.send({
              text: summary,
-             from: "Pi Hole Bot <Miles@aaathats3as.com>",
-             to: "Miles <miles@aaathats3as.com>",
+             from: "Pi Hole Bot <" + config.user  + ">",
+             to: config.toname + " <" + config.toaddr + ">",
              subject: "Pi Hole Summary ("+ today() +")"
-         }, function (err, message) { console.log(err); });
+         }, function (err, message) { console.log("Errors: " + err); });
 
      });
- });
+});
+
+// Update from the Git repository
+git().pull("https://github.com/MilesGG/pi-hole-summary.git", "master");
