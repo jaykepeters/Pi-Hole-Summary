@@ -7,7 +7,6 @@ WHATITDOES="This will send you daily emails of your pihole stats."
 { if 
 (whiptail --title "$NAMEOFAPP" --yes-button "Skip" --no-button "Proceed" --yesno "Do you want to setup $NAMEOFAPP? $WHATITDOES" 10 80) 
 then
-else
 ## Sources and update
 sudo echo 'deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi' | sudo tee --append /etc/apt/sources.list.d/stretch.list
 sudo apt-get update -y
