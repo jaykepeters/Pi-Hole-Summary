@@ -1,5 +1,6 @@
 # Pi-hole Summary
-Get an email every day with the data from Pi Hole's API.
+Get an email every day with the data from Pi-hole's API.
+
 ## Installation
 1. Install Node.js
 - Enter the following commands below to install Node.js on your Raspberry Pi (Version may not be current)
