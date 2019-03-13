@@ -1,24 +1,29 @@
 # Pi Hole Summary
 Get an email every day with the data from Pi Hole's API.
 ## Installation
-1. Clone the repository on your Pi.
+1. Install Node.js
+- Enter the following commands below to install Node.js on your Raspberry Pi (Version may not be current)
+```
+curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+- Be careful, piping to Bash can be dangerous
 
-  `git clone https://github.com/MilesGG/Pi-Hole-Summary.git`
+2. Clone the repository
+`git clone https://github.com/jaykepeters/Pi-Hole-Summary.git /opt/Pi-Hole-Summary`
+`cd /opt/Pi-Hole-Summary`
 
-2. We must now install Node.js, at the moment the raspbian repository doesn't make installing node.js very easy. To circumvent it, download the appropriate version from nodejs.org and extract it to your directory. Check your version with `node -v`
-3. However, the version of npm is perfectly functional. Install it with `sudo apt install npm`
-4. Install the dependencies for email sending and automatic updates
+3. Install the required dependencies
 `/path/to/npm i emailjs simple-git`
-5. We are now going to create a `config.json`, copy the file `bare-config.json` as config.json. Fill in all the data, it won't work if it doesn't have it all.
-6. Create a cronjob with `cronjob -e` and write one like this:
 
-  `59 23 * * * /home/pi/node-v6.9.5-linux-armv6l/bin/node /home/pi/pi-hole-summary/index.js`
+4. We are now going to create a `config.json`, copy the file `bare-config.json` as config.json. Fill in all the data, it won't work if it doesn't have it all.
 
-  Verify that it's registered properly with https://crontab.guru and `cronjob -l`.
+5. Create a cronjob with `cronjob -e` and write one like this:
+`59 23 * * * /usr/bin/node /opt/Pi-Hole-Summary/index.js`
 
-7. Run a test flight with `/path/to/node /home/user/pi-hole-summary/index.js`. You should \*hopefully\* have an email in
+6. Run a test flight with `/path/to/node /home/user/pi-hole-summary/index.js`. You should \*hopefully\* have an email in
 
-  Now you should get an email from the setup account at 23:59 every night.
+Now you should get an email from the setup account at 23:59 every night.
 ## Config.json Params
 
 |Parameter|Function|Example|
