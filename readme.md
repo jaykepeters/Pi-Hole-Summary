@@ -32,7 +32,10 @@ mv bare-config.json config.json
 59 23 * * * /usr/bin/node /opt/Pi-hole-summary/index.js
 ```
 
-6. Run a test flight with `node /opt/Pi-hole-summary/index.js`. You should \*hopefully\* have an email in
+6. Run a test flight with `node /opt/Pi-hole-summary/index.js`. You should get the email. 
+
+## Tips
+- For Gmail Users, ensure 2FA is enabled on your Google Account. Generate an App Password. In `config.json`, you put the app password as the password, and fill out the appropiate information. Google's sending server is `smtp.gmail.com`
 
 Now you should get an email from the setup account at 23:59 every night.
 ## Config.json Params
