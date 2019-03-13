@@ -13,7 +13,7 @@ sudo apt install -y nodejs
 2. Clone the repository
 ```
 git clone https://github.com/jaykepeters/Pi-hole-summary.git /opt/Pi-hole-summary`
-cd /opt/Pi-Hole-Summary
+cd /opt/Pi-Hole-summary
 ```
 
 3. Install the required dependencies
