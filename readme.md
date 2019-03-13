@@ -36,7 +36,7 @@ Now you should get an email from the setup account at 23:59 every night.
 6. Run a test flight with `node /opt/Pi-hole-summary/index.js`. You should get the email. 
 
 ### Example E-mail
-![Example E-mail][example.png]
+![Example](example.png)
 
 ## Tips
 - For Gmail Users, ensure 2FA is enabled on your Google Account. Generate an App Password. In `config.json`, you put the app password as the password, and fill out the appropiate information. Google's sending server is `smtp.gmail.com`
