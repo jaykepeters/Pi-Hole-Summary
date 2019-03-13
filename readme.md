@@ -1,4 +1,4 @@
-# Pi Hole Summary
+# Pi-hole Summary
 Get an email every day with the data from Pi Hole's API.
 ## Installation
 1. Install Node.js
