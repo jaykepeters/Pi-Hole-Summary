@@ -12,7 +12,7 @@ sudo apt install -y nodejs
 
 2. Clone the repository
 ```
-git clone https://github.com/jaykepeters/Pi-Hole-Summary.git /opt/Pi-Hole-Summary`
+git clone https://github.com/jaykepeters/Pi-hole-summary.git /opt/Pi-hole-summary`
 cd /opt/Pi-Hole-Summary
 ```
 
@@ -27,12 +27,12 @@ nano bare-config.json
 mv bare-config.json config.json
 ```
 
-5. Create a cronjob with `cronjob -e` and write one like this:
+5. Create a Cron Job with `cronjob -e` and append the following to the very bottom of the file:
 ```
-59 23 * * * /usr/bin/node /opt/Pi-Hole-Summary/index.js
+59 23 * * * /usr/bin/node /opt/Pi-hole-summary/index.js
 ```
 
-6. Run a test flight with `node /opt/Pi-Hole-Summary/index.js`. You should \*hopefully\* have an email in
+6. Run a test flight with `node /opt/Pi-hole-summary/index.js`. You should \*hopefully\* have an email in
 
 Now you should get an email from the setup account at 23:59 every night.
 ## Config.json Params
