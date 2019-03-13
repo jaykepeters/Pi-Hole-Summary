@@ -20,7 +20,7 @@ function today() {
      month = (month < 10 ? "0" : "") + month;
      var day = date.getDate();
      day = (day < 10 ? "0" : "") + day;
-     return day + "/" + month + "/" + year;
+     return month + "/" + day + "/" + year;
  }
 
 // HTTP GET stats from localhost
@@ -28,20 +28,17 @@ http.get('http://127.0.0.1/admin/api.php', (res) => {
      res.setEncoding('utf8');
      res.on('data', function (body) {
          var obj = JSON.parse(body);
-         var summary = "This is your Pi Hole summary for " + today() + "(D/M/Y).\n\nDomains being blocked: " +
-         obj.domains_being_blocked + "\nDNS queries today: " + obj.dns_queries_today + "\nAds blocked today: " +
-         obj.ads_blocked_today + "\nAds to total queries: " + obj.ads_percentage_today;
+         var summary = "This is your daily Pi-hole summary for " + today() + ".\n\nDomains being blocked: " +
+         obj.domains_being_blocked.toLocaleString() + "\nDNS queries today: " + obj.dns_queries_today.toLocaleString() + "\nAds blocked today: " +
+         obj.ads_blocked_today.toLocaleString() + "\nAds to total queries: " + Math.floor((obj.ads_percentage_today/100) * 100) + '%';
 
         // send the message itself
          server.send({
              text: summary,
-             from: "Pi Hole Bot <" + config.user  + ">",
+             from: "Pi-hole Bot <" + config.user  + ">",
              to: config.toname + " <" + config.toaddr + ">",
-             subject: "Pi Hole Summary ("+ today() +")"
+             subject: "Your Daily Pi-hole Summary for " + today()
          }, function (err, message) { console.log("Errors: " + err); });
 
      });
 });
-
-// Update from the Git repository
-git().pull("https://github.com/MilesGG/pi-hole-summary.git", "master");
